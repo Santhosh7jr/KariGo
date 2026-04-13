@@ -28,7 +28,7 @@ This app is designed as a **real product (not just a college project)** with:
 * Express (ES Modules)
 * PostgreSQL
 * JWT Authentication
-* Socket.io (for real-time)
+* Socket.io (planned)
 
 ### External Services (Planned)
 
@@ -45,7 +45,11 @@ This app is designed as a **real product (not just a college project)** with:
 back-end/
   controllers/
   routes/
+    authRoutes.js
+    userRoutes.js
   middleware/
+    authMiddleware.js
+    roleMiddleware.js
   utils/
   sockets/
   db.js
@@ -127,48 +131,49 @@ src/
   * Login
   * Password hashing (bcrypt)
   * JWT token
+* 🔐 Auth Middleware:
+
+  * Protected routes
+  * Token verification
+* 🛡️ Role-Based Access Control:
+
+  * Admin-only routes
+  * Secure API access
 
 ---
 
 ### 🔜 Upcoming Features
 
-#### 🔐 Auth & Security
-
-* Auth middleware
-* Role-based access control
-
-#### 🧑‍🔧 Workers System
+#### 🧑‍🔧 Workers System (NEXT)
 
 * Worker listing
 * Worker profile page
-* Worker application approval system
+* Worker application system
 
 #### 📅 Booking System
 
 * Book worker
 * Select date/time
-* Booking lifecycle (pending → accepted → completed)
+* Booking lifecycle
 
 #### 💳 Payment System
 
 * Razorpay integration
 * Payment verification
-* Worker earnings system
 
 #### ⚡ Real-Time Features
 
-* Booking notifications
-* Live updates (Socket.io)
+* Notifications (Socket.io)
 
 #### 🗺️ Location System
 
 * Map integration
-* Distance-based worker search
+* Distance-based search
 
 #### 📊 Dashboards
 
-* User dashboard (bookings/history)
-* Worker dashboard (jobs/earnings)
+* User dashboard
+* Worker dashboard
 * Admin dashboard
 
 ---
@@ -186,7 +191,7 @@ Build a **production-level application** with:
 * Scalable architecture
 * Clean code structure
 * Real-world features
-* Strong backend + frontend integration
+* Secure backend + frontend integration
 
 ---
 
@@ -196,35 +201,34 @@ Build a **production-level application** with:
 
 * Backend setup
 * DB connection
-* Auth system
 
-### Phase 2: Auth Middleware (NEXT)
+### Phase 2: Authentication & Security ✅
 
-* Protect routes
+* Register/Login
+* JWT
+* Auth middleware
 * Role-based access
 
-### Phase 3: Workers System
+### Phase 3: Workers System (NEXT)
 
 * Worker APIs
-* UI pages
+* Worker UI
 
 ### Phase 4: Booking System
 
-* Booking APIs + UI
-
 ### Phase 5: Payments
-
-* Razorpay integration
 
 ### Phase 6: Real-Time + Maps
 
-* Socket.io
-* Location features
-
 ### Phase 7: Dashboards + Polish
 
-* Final UI improvements
-* Deployment
+---
+
+## 🚀 Current Status
+
+👉 Auth system completed
+👉 Middleware + role-based access completed
+👉 Next step: **Workers System (APIs + UI)**
 
 ---
 
@@ -232,12 +236,7 @@ Build a **production-level application** with:
 
 * Focus on understanding, not just building
 * Follow clean architecture
-* Avoid hardcoding
-* Always test APIs before frontend integration
+* Always test APIs using Postman
+* Think like building a real product, not just a project
 
 ---
-
-## 🚀 Current Status
-
-👉 Auth system completed
-👉 Next step: **Auth Middleware + Protected Routes**
