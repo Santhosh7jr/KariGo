@@ -44,9 +44,14 @@ This app is designed as a **real product (not just a college project)** with:
 ```
 back-end/
   controllers/
+    authController.js
+    workerController.js
+    workerApplicationController.js
   routes/
     authRoutes.js
     userRoutes.js
+    workerRoutes.js
+    workerApplicationRoutes.js
   middleware/
     authMiddleware.js
     roleMiddleware.js
@@ -92,6 +97,7 @@ src/
 * Book services
 * Make payments
 * View booking history
+* Apply as worker
 
 ### 🧑‍🔧 Worker
 
@@ -102,17 +108,22 @@ src/
 
 ### 🛠️ Admin
 
-* Approve/reject workers
+* Approve/reject worker applications
 * Manage users
 * Monitor bookings & payments
 
 ---
 
-## 🗄️ Database Design (Planned)
+## 🗄️ Database Design
+
+### ✅ Completed Tables
 
 * users
 * workers
 * worker_applications
+
+### 🔜 Upcoming Tables
+
 * bookings
 * reviews
 * payments
@@ -123,34 +134,39 @@ src/
 
 ### ✅ Completed
 
-* Backend setup (Express + ES Modules)
-* PostgreSQL connection
-* Authentication system:
+#### 🔐 Authentication System
 
-  * Register
-  * Login
-  * Password hashing (bcrypt)
-  * JWT token
-* 🔐 Auth Middleware:
+* Register
+* Login
+* Password hashing (bcrypt)
+* JWT token
 
-  * Protected routes
-  * Token verification
-* 🛡️ Role-Based Access Control:
+#### 🛡️ Security
 
-  * Admin-only routes
-  * Secure API access
+* Auth Middleware (Protected routes)
+* Role-Based Access Control
+
+#### 🧑‍🔧 Workers System
+
+* Workers table
+* Get all workers API
+* Get worker by ID API
+* Create worker (Admin only)
+
+#### 📩 Worker Application System
+
+* Apply as worker
+* Admin can:
+
+  * View applications
+  * Approve application → becomes worker
+  * Reject application
 
 ---
 
 ### 🔜 Upcoming Features
 
-#### 🧑‍🔧 Workers System (NEXT)
-
-* Worker listing
-* Worker profile page
-* Worker application system
-
-#### 📅 Booking System
+#### 📅 Booking System (NEXT)
 
 * Book worker
 * Select date/time
@@ -180,18 +196,11 @@ src/
 
 ## 🔁 Application Flow
 
-User → Search → Select Worker → View Profile → Book → Pay → Track Status
+User → Search Workers → View Profile → Book → Pay → Track Status
 
----
+Worker → Apply → Get Approved → Accept Jobs
 
-## 🎯 Final Goal
-
-Build a **production-level application** with:
-
-* Scalable architecture
-* Clean code structure
-* Real-world features
-* Secure backend + frontend integration
+Admin → Review Applications → Manage Platform
 
 ---
 
@@ -209,26 +218,31 @@ Build a **production-level application** with:
 * Auth middleware
 * Role-based access
 
-### Phase 3: Workers System (NEXT)
+### Phase 3: Workers System ✅
 
 * Worker APIs
-* Worker UI
+* Worker Application system
 
-### Phase 4: Booking System
+### Phase 4: Frontend Integration 🚀 (CURRENT)
 
-### Phase 5: Payments
+* Worker listing UI
+* API integration
 
-### Phase 6: Real-Time + Maps
+### Phase 5: Booking System
 
-### Phase 7: Dashboards + Polish
+### Phase 6: Payments
+
+### Phase 7: Real-Time + Maps
+
+### Phase 8: Dashboards + Polish
 
 ---
 
 ## 🚀 Current Status
 
-👉 Auth system completed
-👉 Middleware + role-based access completed
-👉 Next step: **Workers System (APIs + UI)**
+👉 Backend (Core APIs) completed
+👉 Worker system + application flow completed
+👉 Starting **Frontend (UI + API integration)**
 
 ---
 
