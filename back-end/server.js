@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import pool from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import workerRoutes from "./routes/workerRoutes.js";
+import workerApplicationRoutes from "./routes/workerApplicationRoutes.js";
 
 dotenv.config();
 
@@ -13,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use("/api/user", userRoutes);
+app.use('/api/workers', workerRoutes);
+app.use('/api/worker-applications', workerApplicationRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "server is running" });
