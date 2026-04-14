@@ -64,26 +64,23 @@ back-end/
 ### Frontend (`front-end/`)
 
 ```
-src/
-  components/
-    layout/
-    common/
-    workers/
-    booking/
-  pages/
-    Home.jsx
-    Services.jsx
-    FindWorkers.jsx
-    WorkerProfile.jsx
-    Booking.jsx
-    Login.jsx
-    UserDashboard.jsx
-    WorkerDashboard.jsx
-    Admin.jsx
-  context/
-  api/
-  hooks/
-  utils/
+front-end/
+  src/
+    components/
+      layout/
+      common/
+      workers/
+    pages/
+      Home.jsx
+      FindWorkers.jsx
+      WorkerProfile.jsx
+      Login.jsx
+    api/
+      axios.js
+    context/
+      AuthContext.jsx
+    hooks/
+    utils/
 ```
 
 ---
@@ -159,8 +156,16 @@ src/
 * Admin can:
 
   * View applications
-  * Approve application → becomes worker
+  * Approve → becomes worker
   * Reject application
+
+#### 🌐 Frontend Setup & Integration
+
+* React (Vite) setup
+* Tailwind CSS configured
+* React Router setup
+* Axios instance for API calls
+* Worker listing page (connected to backend)
 
 ---
 
@@ -223,7 +228,7 @@ Admin → Review Applications → Manage Platform
 * Worker APIs
 * Worker Application system
 
-### Phase 4: Frontend Integration 🚀 (CURRENT)
+### Phase 4: Frontend Integration ✅ (IN PROGRESS)
 
 * Worker listing UI
 * API integration
@@ -240,9 +245,10 @@ Admin → Review Applications → Manage Platform
 
 ## 🚀 Current Status
 
-👉 Backend (Core APIs) completed
+👉 Backend core APIs completed
 👉 Worker system + application flow completed
-👉 Starting **Frontend (UI + API integration)**
+👉 Frontend setup completed
+👉 First UI (Worker listing) connected to backend
 
 ---
 
@@ -251,6 +257,7 @@ Admin → Review Applications → Manage Platform
 * Focus on understanding, not just building
 * Follow clean architecture
 * Always test APIs using Postman
+* Debug errors properly (don’t ignore them)
 * Think like building a real product, not just a project
 
 ---
