@@ -2,10 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -14,35 +15,42 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+      await axios.post(
+        "http://localhost:5000/api/auth/register",
         form
       );
 
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
+      navigate("/login");
 
     } catch (error) {
-      alert("Login failed", error);
+      alert("Registration failed", error);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-200">
 
       <div className="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl w-full max-w-md">
 
         <h2 className="text-3xl font-bold text-center mb-6 text-slate-800">
-          Welcome Back 👋
+          Create Account 🚀
         </h2>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          className="w-full border p-3 mb-4 rounded-xl"
+          onChange={handleChange}
+        />
 
         <input
           type="email"
           name="email"
           placeholder="Email"
-          className="w-full border p-3 mb-4 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full border p-3 mb-4 rounded-xl"
           onChange={handleChange}
         />
 
@@ -50,21 +58,21 @@ const Login = () => {
           type="password"
           name="password"
           placeholder="Password"
-          className="w-full border p-3 mb-6 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none"
+          className="w-full border p-3 mb-6 rounded-xl"
           onChange={handleChange}
         />
 
         <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-600 transition"
+          onClick={handleRegister}
+          className="w-full bg-purple-500 text-white py-3 rounded-xl hover:bg-purple-600 transition"
         >
-          Login
+          Register
         </button>
 
         <p className="text-center text-sm mt-4">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-semibold">
-            Register
+          Already have an account?{" "}
+          <Link to="/login" className="text-purple-600 font-semibold">
+            Login
           </Link>
         </p>
 
@@ -73,4 +81,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

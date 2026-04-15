@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import WorkerCard from "../components/workers/WorkerCard";
 
 const FindWorkers = () => {
   const [workers, setWorkers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-
-  const navigate = useNavigate();
 
   // Fetch workers
   useEffect(() => {
@@ -17,42 +16,34 @@ const FindWorkers = () => {
       try {
         const res = await axios.get("http://localhost:5000/api/workers");
 
-        // Safety check
         if (Array.isArray(res.data)) {
           setWorkers(res.data);
         } else {
           console.error("Invalid data format:", res.data);
           setWorkers([]);
         }
-
       } catch (error) {
         console.error("Error fetching workers:", error);
         setWorkers([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchWorkers();
   }, []);
 
-  // Safe filtering (NO CRASH VERSION)
+  // Filtering
   const filteredWorkers = workers.filter((w) => {
     const name = w?.name || "";
     const categoryValue = w?.category || "";
     const price = Number(w?.price) || 0;
 
-    const matchesSearch = name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesCategory = category
-      ? categoryValue === category
-      : true;
-
-    const matchesPrice = maxPrice
-      ? price <= Number(maxPrice)
-      : true;
-
-    return matchesSearch && matchesCategory && matchesPrice;
+    return (
+      name.toLowerCase().includes(search.toLowerCase()) &&
+      (category ? categoryValue === category : true) &&
+      (maxPrice ? price <= Number(maxPrice) : true)
+    );
   });
 
   return (
@@ -102,37 +93,19 @@ const FindWorkers = () => {
         />
       </div>
 
-      {/* Workers Grid */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Content */}
+      <div className="max-w-6xl mx-auto">
 
-        {filteredWorkers.length > 0 ? (
-          filteredWorkers.map((worker) => (
-            <div
-              key={worker.id}
-              onClick={() => navigate(`/profile/${worker.id}`)}
-              className="bg-white border border-slate-200 rounded-2xl p-5 cursor-pointer 
-                         hover:shadow-lg hover:border-slate-300 transition duration-200"
-            >
-              <h2 className="text-xl font-semibold text-slate-900">
-                {worker.name || "No Name"}
-              </h2>
-
-              <p className="text-slate-500 text-sm">
-                {worker.category || "Unknown"}
-              </p>
-
-              <div className="flex justify-between items-center mt-4">
-                <p className="text-slate-900 font-medium">
-                  ₹{worker.price || 0}
-                </p>
-                <span className="text-sm text-slate-600">
-                  ⭐ {worker.rating || 0}
-                </span>
-              </div>
-            </div>
-          ))
+        {loading ? (
+          <p className="text-center text-slate-500">Loading workers...</p>
+        ) : filteredWorkers.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredWorkers.map((worker) => (
+              <WorkerCard key={worker.id} worker={worker} />
+            ))}
+          </div>
         ) : (
-          <p className="text-slate-500 col-span-full text-center">
+          <p className="text-center text-slate-500">
             No workers found
           </p>
         )}
