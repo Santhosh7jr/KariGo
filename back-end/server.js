@@ -1,14 +1,12 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import pool from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import workerRoutes from "./routes/workerRoutes.js";
 import workerApplicationRoutes from "./routes/workerApplicationRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
-
-dotenv.config();
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 const app = express();
 
@@ -18,6 +16,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/workers", workerRoutes);
 app.use("/api/worker-applications", workerApplicationRoutes);
+app.use("/api/payments", paymentRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 app.get("/", (req, res) => {

@@ -26,6 +26,8 @@ const UserBookings = () => {
     };
 
     fetchBookings();
+
+    axios.get("http://localhost:5000/api/bookings/auto-release");
   }, []);
 
   return (

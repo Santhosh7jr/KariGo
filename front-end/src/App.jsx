@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import UserBookings from "./pages/UserBookings";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import WorkerDashboard from "./pages/WorkerDashboard";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/my-bookings" element={<UserBookings />} />
         <Route path="/find" element={<FindWorkers />} />
+        <Route path="/worker-dashboard" element={<WorkerDashboard />} />
         <Route path="/booking/:id" element={<Booking />} />
         <Route path="/profile/:id" element={<WorkerProfile />} />
       </Routes>

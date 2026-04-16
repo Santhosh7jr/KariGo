@@ -1,282 +1,241 @@
-# 🚀 KariGo — Service Marketplace App
+# 🚀 KariGo - Full Stack Service Marketplace
 
-## 📌 Project Overview
-
-KariGo is a full-stack **service marketplace platform** where users can:
-
-* Find skilled workers (plumbers, electricians, etc.)
-* View profiles
-* Book services
-* Track bookings
-
-This is being built as a **real production-level app**, not just a college project.
+KariGo is a full-stack web application where users can find workers, book services, and manage jobs with a real-world workflow including authentication, booking lifecycle, payments, and escrow logic.
 
 ---
 
-# 🛠️ Tech Stack
+# 📌 Current Project Status
+
+## ✅ Completed Features
+
+### 🔐 Authentication System
+
+* User registration & login
+* JWT-based authentication
+* Role-based access (User / Worker)
+
+---
+
+### 👷 Workers System
+
+* View all workers
+* Worker profile page
+* Worker application system
+
+---
+
+### 📅 Booking System
+
+* Users can book workers
+* Booking stored in database
+* User dashboard to view bookings
+
+---
+
+### 👨‍💼 Worker Dashboard
+
+* View assigned bookings
+* Accept / Reject bookings
+* Mark work as completed
+
+---
+
+### 💳 Payment System (Test Mode)
+
+* Razorpay integration (test mode)
+* Create order from backend
+* Payment popup in frontend
+* Payment verification using signature (secure)
+
+---
+
+### 📍 Location System
+
+* User location captured using browser (GPS)
+* Stored in database
+* Required before booking
+
+---
+
+### 🔄 Booking Lifecycle (Core Logic)
+
+```
+pending → accepted → completed_by_worker → confirmed_by_user → paid_to_worker
+                      ↘ disputed
+```
+
+---
+
+### 💰 Escrow System (Simulation)
+
+* Payment collected upfront
+* Platform holds money
+* Worker marks work complete
+* User confirms OR auto-release
+* Platform keeps 10% commission
+
+---
+
+### ⏱️ Auto Release System
+
+* Tracks `completed_at` timestamp
+* If user doesn’t respond in 24 hours:
+  → payment auto released
+
+---
+
+### 🔐 Secure Payment Flow
+
+```
+Payment → Signature Verification → Booking Creation
+```
+
+---
+
+# ⚠️ Pending / Upcoming Features
+
+### 📱 Notifications
+
+* SMS / WhatsApp integration (Twilio / API)
+
+---
+
+### 🗺️ Worker Location & Maps
+
+* Show worker location on map
+* Distance-based filtering
+
+---
+
+### ⚡ Real-Time Features
+
+* Live updates using Socket.io
+
+---
+
+### 💳 Production Payments
+
+* Switch to live Razorpay keys
+* Real transactions
+* Payout system (advanced)
+
+---
+
+### 👑 Admin Panel
+
+* Manage users
+* Approve workers
+* Monitor transactions
+
+---
+
+### 🌍 Deployment
+
+* Backend → Render / Railway
+* Frontend → Vercel
+* Database → Neon / Supabase
+
+---
+
+# 🧠 Tech Stack
 
 ## Frontend
 
 * React (Vite)
 * Tailwind CSS
 * Axios
-* React Router
 
 ## Backend
 
 * Node.js
-* Express (ES Modules)
+* Express.js
 * PostgreSQL
-* JWT Authentication
 
-## Planned
+## Authentication
 
-* Razorpay (Payments)
-* Socket.io (Real-time)
-* Maps API (Location)
-
----
-
-# 📁 Project Structure
-
-## Backend (`back-end/`)
-
-```
-controllers/
-routes/
-middleware/
-utils/
-sockets/
-db.js
-server.js
-```
-
-## Frontend (`front-end/`)
-
-```
-src/
-  components/
-    layout/
-      Navbar.jsx
-      Footer.jsx
-    workers/
-      WorkerCard.jsx
-  pages/
-    Home.jsx
-    FindWorkers.jsx
-    WorkerProfile.jsx
-    Booking.jsx
-    Login.jsx
-    Register.jsx
-    UserBookings.jsx
-  api/
-  context/
-  hooks/
-  utils/
-```
-
----
-
-# 🧩 FEATURES
-
-## ✅ COMPLETED
-
-### 🔐 Authentication System
-
-* Register
-* Login
-* JWT token storage
-* Auth middleware
-* Role-based access
-
----
-
-### 🧑‍🔧 Workers System
-
-* Workers table
-* Get all workers API
-* Get worker by ID
-* Worker listing UI
-* Worker profile page
-
----
-
-### 📅 Booking System (CORE DONE)
-
-* Book worker (date + time)
-* Store in database
-* Booking status (`pending`)
-* Secure API with JWT
-
----
-
-### 📊 User Dashboard
-
-* View all bookings
-* Show:
-
-  * Worker name
-  * Date
-  * Time
-  * Status
-
----
-
-### 🎨 UI SYSTEM
-
-* Responsive Login page
-* Responsive Register page
-* Navbar (with routes + logout)
-* Footer
-* Worker cards UI
-
----
-
-### 🔄 FULL FLOW WORKING
-
-```
-Register → Login → Find Workers → Profile → Book → View Bookings
-```
-
----
-
-# 🗄️ DATABASE DESIGN
-
-### ✅ Tables Created
-
-* users
-* workers
-* worker_applications
-* bookings
-
----
-
-### 🔜 Upcoming Tables
-
-* payments
-* reviews
-
----
-
-# 📈 DEVELOPMENT PROGRESS
-
-## Phase 1: Foundation ✅
-
-* Backend setup
-* DB connection
-
-## Phase 2: Authentication ✅
-
-* Login/Register
 * JWT
-* Middleware
+* bcrypt
 
-## Phase 3: Workers System ✅
+## Payments
 
-* APIs
-* UI
-* Profile page
-
-## Phase 4: Booking System ✅
-
-* Booking API
-* Booking UI
-* User bookings page
+* Razorpay (Test Mode)
 
 ---
 
-# 🚧 NEXT STEPS (VERY IMPORTANT)
+# 🧪 Test Credentials
 
-## 🔥 Phase 5: Worker Dashboard
+Use Razorpay test card:
 
-* View assigned bookings
-* Accept / Reject bookings
-* Update booking status
-
----
-
-## 🔥 Phase 6: Booking Lifecycle
-
-* pending → accepted → completed
-* rejected flow
+```
+Card Number: 4111 1111 1111 1111
+Expiry: Any future date
+CVV: 123
+OTP: 123456
+```
 
 ---
 
-## 💳 Phase 7: Payments
+# 🚀 How to Run Locally
 
-* Razorpay integration
-* Payment verification
-* Payments table
+## Backend
 
----
+```
+cd back-end
+npm install
+npm run dev
+```
 
-## ⚡ Phase 8: Real-Time Features
+## Frontend
 
-* Socket.io
-* Live booking updates
-
----
-
-## 🗺️ Phase 9: Location System
-
-* Map integration
-* Distance-based worker search
+```
+cd front-end
+npm install
+npm run dev
+```
 
 ---
 
-## 📊 Phase 10: Advanced Dashboards
+# 📊 Project Progress
 
-* Worker dashboard
-* Admin dashboard
-
----
-
-## 🎯 Final Phase: Polish
-
-* Reviews system
-* Filters & sorting
-* Loading states
-* Error handling
-* Deployment
-
----
-
-# 🚀 CURRENT STATUS
-
-✔ Auth system working
-✔ Worker system working
-✔ Booking system working
-✔ User dashboard working
-✔ UI improved (login, register, navbar, footer)
-
-👉 Ready for: **Worker Dashboard + Booking Lifecycle**
+```
+Core Backend        ✅
+Booking System      ✅
+Payments (Test)     ✅
+Escrow Logic        ✅
+Auto Release        ✅
+--------------------------------
+Frontend Polish     🔴
+Deployment          🔴
+Notifications       🔴
+```
 
 ---
 
-# 🧠 DEVELOPER NOTES
+# 🎯 Next Steps
 
-* Always debug errors (don’t ignore them)
-* Follow clean architecture
-* Think in flows, not just pages
-* Build like a real product
-
----
-
-# 🎯 FINAL GOAL
-
-Build a **production-ready platform** with:
-
-* Scalable backend
-* Clean frontend
-* Real-world features
-* Strong UX
+1. Improve frontend UI/UX
+2. Add notifications (SMS/WhatsApp)
+3. Integrate maps & worker location
+4. Deploy full application
+5. Switch to production payments
 
 ---
 
-# 🔥 NEXT CHAT START POINT
+# 💡 Project Vision
 
-👉 Say:
+KariGo aims to become a **real-world service marketplace platform** similar to:
 
-**“Continue KariGo — Worker Dashboard”**
+* Urban Company
+* Uber (service model)
+* Freelance marketplaces
 
 ---
+
+# 👨‍💻 Author
+
+Santhosh
+Full Stack Developer | AI Enthusiast
+
+---
+
+🔥 This project demonstrates real-world full-stack development including secure payments, escrow systems, and scalable architecture.

@@ -5,14 +5,14 @@ import pool from "../db.js";
 // ✅ REGISTER
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, phone } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await pool.query(
-      "INSERT INTO users (name, email, password, role) VALUES ($1,$2,$3,$4) RETURNING id, name, email, role",
-      [name, email, hashedPassword, role || "user"]
-    );
+  "INSERT INTO users (name, email, password, phone, role) VALUES ($1,$2,$3,$4,$5)",
+  [name, email, hashedPassword, phone, "user"]
+);
 
     res.json(newUser.rows[0]);
   } catch (err) {
